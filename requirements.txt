@@ -1,0 +1,25 @@
+# ============================================
+# Datathon Fase 05 — Passos Mágicos — Dependências
+# Python 3.10+
+# ============================================
+
+# --- Manipulação de dados ---
+pandas>=2.0.0
+numpy>=1.24.0
+openpyxl>=3.1.0
+
+# --- Machine Learning ---
+scikit-learn>=1.3.0
+xgboost>=2.0.0
+joblib>=1.3.0
+
+# --- Visualização ---
+matplotlib>=3.7.0
+plotly>=5.18.0
+
+# --- App Web ---
+streamlit>=1.32.0
+
+# --- Notebook (desenvolvimento) ---
+jupyter>=1.0.0
+ipykernel>=6.25.0
