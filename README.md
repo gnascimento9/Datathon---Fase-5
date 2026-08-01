@@ -1,6 +1,7 @@
 # 🪄 Datathon — Fase 05 | Passos Mágicos
 
 > **FIAP PosTech — Data Analytics**
+
 > Análise de dados e modelo preditivo de risco de defasagem escolar, a partir da pesquisa PEDE (2022-2024) da Associação Passos Mágicos.
 
 ---
@@ -43,7 +44,7 @@ Um dos achados centrais deste projeto foi a necessidade de **evitar vazamento de
 ## 🛠️ Pipeline de Machine Learning
 
 ```
-Dados Brutos (planilha PEDE, carregada via URL — abas 2022/23/24)
+Dados Brutos
         │
         ▼
 [1] Consolidação ──► Padronização de Fase/Pedra, união em dataset longitudinal
