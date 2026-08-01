@@ -1,7 +1,6 @@
 # 🪄 Datathon — Fase 05 | Passos Mágicos
 
 > **FIAP PosTech — Data Analytics**
-
 > Análise de dados e modelo preditivo de risco de defasagem escolar, a partir da pesquisa PEDE (2022-2024) da Associação Passos Mágicos.
 
 ---
@@ -16,8 +15,8 @@
 
 | Recurso | Link |
 |---|---|
-| 🚀 **Aplicação Streamlit** | *(preencher após o deploy no Community Cloud)* |
-| 📓 **Notebook renderizado** | *https://github.com/gnascimento9/Datathon---Fase-5/blob/main/notebooks/Datathon_Fase05_PassosMagicos.ipynb* |
+| 🚀 **Aplicação Streamlit** | [Acessar App](https://datathon---fase-5-bf6petnhp8kycpxnq3kryp.streamlit.app/) |
+| 📓 **Notebook renderizado** | [Acessar Notebook](https://github.com/gnascimento9/Datathon---Fase-5/blob/main/notebooks/Datathon_Fase05_PassosMagicos.ipynb) |
 
 ---
 
@@ -111,10 +110,10 @@ Datathon-Fase-5-PassosMagicos
 
 ## 🚀 Como Executar
 
-### Opção 1 — Google Colab (recomendado para fins acadêmicos)
+### Opção 1 — Google Colab
 
 1. Abra `notebooks/Datathon_Fase05_PassosMagicos.ipynb` no [Google Colab](https://colab.research.google.com).
-2. Rode as células em ordem — os dados brutos são carregados automaticamente de uma planilha Google Sheets (não é necessário upload manual).
+2. Rode as células em ordem.
 3. Ao final, baixe `modelo_risco_defasagem.pkl` e `metadata.json` e coloque-os em `models/`.
 
 ### Opção 2 — Localmente
@@ -131,7 +130,7 @@ source .venv/bin/activate  # Linux/Mac
 # 3. Instale as dependências
 pip install -r requirements.txt
 
-# 4. Rode o notebook (gera modelo_risco_defasagem.pkl e metadata.json na pasta notebooks/)
+# 4. Rode o notebook 
 jupyter notebook notebooks/Datathon_Fase05_PassosMagicos.ipynb
 
 # 5. Mova os dois artefatos gerados para models/
