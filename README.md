@@ -1,6 +1,7 @@
 # 🪄 Datathon — Fase 05 | Passos Mágicos
 
 > **FIAP PosTech — Data Analytics**
+
 > Análise de dados e modelo preditivo de risco de defasagem escolar, a partir da pesquisa PEDE (2022-2024) da Associação Passos Mágicos.
 
 ---
@@ -16,33 +17,34 @@
 | Recurso | Link |
 |---|---|
 | 🚀 **Aplicação Streamlit** | *(preencher após o deploy no Community Cloud)* |
-| 📓 **Notebook renderizado** | *(preencher com o link do nbviewer após subir o repositório)* |
+| 📓 **Notebook renderizado** | *https://github.com/gnascimento9/Datathon---Fase-5/blob/main/notebooks/Datathon_Fase05_PassosMagicos.ipynb* |
 
 ---
 
 ## 🎯 O Problema
 
-A Associação Passos Mágicos atua há mais de 30 anos na transformação da vida de crianças e jovens em vulnerabilidade social, por meio de educação, apoio psicológico/psicopedagógico e ampliação de horizontes. O desafio: usar os dados da pesquisa **PEDE** (Pesquisa Extensiva do Desenvolvimento Educacional) de 2022 a 2024 para responder 11 perguntas de negócio sobre a efetividade do programa e **construir um modelo preditivo capaz de identificar alunos em risco de defasagem escolar** antes da queda de desempenho.
+A Associação Passos Mágicos atua há mais de 35 anos na transformação da vida de crianças e jovens em vulnerabilidade social, por meio de educação, apoio psicológico/psicopedagógico e ampliação de horizontes. O desafio: usar os dados da pesquisa **PEDE** (Pesquisa Extensiva do Desenvolvimento Educacional) de 2022 a 2024 para responder 11 perguntas de negócio sobre a efetividade do programa e **construir um modelo preditivo capaz de identificar alunos em risco de defasagem escolar** antes da queda de desempenho.
 
 ---
 
-## 🧪 Estratégia de Modelagem — Dois Modelos, Uma Escolha Criteriosa
+## 🧪 Estratégia de Modelagem — Três Modelos, Uma Escolha Criteriosa
 
 Um dos achados centrais deste projeto foi a necessidade de **evitar vazamento de dados (data leakage)**: a Defasagem de um aluno já é calculada diretamente da Fase atual, então prever a defasagem do *mesmo ano* usando indicadores do mesmo ano seria quase trapacear. Por isso, o problema foi redefinido para prever a defasagem do **ano seguinte** a partir dos indicadores do ano atual, com **validação temporal** (treino em 2022→2023, teste em 2023→2024).
 
 | Modelo | AUC (holdout) | F1-score | Recall | Observação |
 |---|---|---|---|---|
 | **Regressão Logística** | 0,808 | 0,625 | 0,539 | Baseline interpretável |
-| **Random Forest** | **0,864** | **0,707** | **0,662** | **Modelo escolhido** — captura relações não lineares |
+| **Random Forest** | 0,864 | 0,707 | 0,662 | Captura relações não lineares |
+| **XGBoost** | **0,870** | **0,723** | **0,679** | **Modelo escolhido** — boosting sequencial de árvores |
 
-**Algoritmo escolhido:** `Random Forest` (`class_weight="balanced"`), selecionado pelo melhor AUC no holdout temporal.
+**Algoritmo escolhido:** `XGBoost` (`scale_pos_weight` para tratar o desbalanceamento entre alunos em risco e fora de risco), selecionado pelo melhor AUC no holdout temporal — o ganho sobre o Random Forest é pequeno, mas consistente em todas as métricas.
 
 ---
 
 ## 🛠️ Pipeline de Machine Learning
 
 ```
-Dados Brutos (PEDE_raw.xlsx — abas 2022/23/24)
+Dados Brutos (planilha PEDE, carregada via URL — abas 2022/23/24)
         │
         ▼
 [1] Consolidação ──► Padronização de Fase/Pedra, união em dataset longitudinal
@@ -60,7 +62,7 @@ Dados Brutos (PEDE_raw.xlsx — abas 2022/23/24)
 [5] Split Temporal ──► Treino (2022→2023) / Teste (2023→2024)
         │
         ▼
-[6] Treinamento ──► Regressão Logística vs. Random Forest
+[6] Treinamento ──► Regressão Logística vs. Random Forest vs. XGBoost
         │
         ▼
 [7] Avaliação ──► AUC, F1, Precisão, Recall, Matriz de Confusão
@@ -112,7 +114,7 @@ Datathon-Fase-5-PassosMagicos
 ### Opção 1 — Google Colab (recomendado para fins acadêmicos)
 
 1. Abra `notebooks/Datathon_Fase05_PassosMagicos.ipynb` no [Google Colab](https://colab.research.google.com).
-2. Rode as células em ordem; quando solicitado, faça upload de `data/raw/PEDE_raw.xlsx`.
+2. Rode as células em ordem — os dados brutos são carregados automaticamente de uma planilha Google Sheets (não é necessário upload manual).
 3. Ao final, baixe `modelo_risco_defasagem.pkl` e `metadata.json` e coloque-os em `models/`.
 
 ### Opção 2 — Localmente
@@ -129,21 +131,17 @@ source .venv/bin/activate  # Linux/Mac
 # 3. Instale as dependências
 pip install -r requirements.txt
 
-# 4. Rode o notebook (gera os artefatos em models/)
+# 4. Rode o notebook (gera modelo_risco_defasagem.pkl e metadata.json na pasta notebooks/)
 jupyter notebook notebooks/Datathon_Fase05_PassosMagicos.ipynb
 
-# 5. Rode o app Streamlit
+# 5. Mova os dois artefatos gerados para models/
+mv notebooks/modelo_risco_defasagem.pkl notebooks/metadata.json models/
+
+# 6. Rode o app Streamlit
 streamlit run app/app.py
 ```
 
 Acesse `http://localhost:8501` no navegador.
-
-### Deploy no Streamlit Community Cloud
-
-1. Suba este repositório no GitHub.
-2. Em [share.streamlit.io](https://share.streamlit.io) → **New app** → aponte para `app/app.py`.
-3. O Community Cloud instala automaticamente as dependências de `requirements.txt`.
-4. Atualize o link na tabela de "Links Rápidos" acima.
 
 ---
 
