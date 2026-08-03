@@ -19,7 +19,7 @@
 |---|---|
 | 🚀 **Aplicação Streamlit** | [Acessar App](https://datathon---fase-5-bf6petnhp8kycpxnq3kr-v2.streamlit.app/) |
 | 📓 **Notebook renderizado** | [Acessar Notebook](https://github.com/gnascimento9/Datathon---Fase-5/blob/main/notebooks/Datathon_Fase05_PassosMagicos.ipynb) |
-| 📓 **Análise Técnica** | [Acessar Notebook](https://github.com/gnascimento9/Datathon---Fase-5/blob/main/notebooks/Datathon_Fase05_PassosMagicos.ipynb) |
+| 📓 **Análise Técnica** | [Acessar Análise](https://github.com/gnascimento9/Datathon---Fase-5/blob/main/docs/analise_tecnica.pdf) |
 
 ---
 
