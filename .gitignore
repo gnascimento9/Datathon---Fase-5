@@ -1,0 +1,77 @@
+# ============================================
+# .gitignore — Tech Challenge Fase 04
+# ============================================
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# --- Ambientes Virtuais ---
+.venv/
+venv/
+env/
+ENV/
+.env
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+profile_default/
+ipython_config.py
+
+# --- IDEs ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# --- Streamlit ---
+.streamlit/secrets.toml
+
+# --- Dados sensíveis ou grandes (manter raw, ignorar processed grandes) ---
+data/processed/*.csv
+data/external/
+*.parquet
+*.h5
+!data/raw/Obesity.csv
+
+# --- Logs e temporários ---
+*.log
+logs/
+tmp/
+temp/
+
+# --- Modelos grandes (descomente se necessário) ---
+# *.pkl
+# *.joblib
+
+# --- Sistema ---
+.DS_Store
+.cache/
+
+# --- Testes e cobertura ---
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
